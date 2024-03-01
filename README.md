@@ -16,3 +16,9 @@
 
 # React class based components lifeCycle
 - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+# TailWindcss
+
+
+# Redux toolkit(Immer)
+- Buttom -> Dispatches an action -> Executes reducer function -> Changes data in Slice  ==> Selector(Provider)

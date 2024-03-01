@@ -8,14 +8,16 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantInfo from "./components/RestaurantInfo";
 import { createContext } from "react";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
+
+const Groceries = lazy(() => import("./components/Groceries"));
 
 export const creator = createContext({
     name : "Naveen Vishak",
     email : "naveenvishak2002@gmail.com"
 });
-
-// const About = lazy(() => import("./components/About"));
-const Groceries = lazy(() => import("./components/Groceries"));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const App = () => {
@@ -24,10 +26,12 @@ const App = () => {
         email : "react@namastedev.com"
     });
     return <div className="app">
-        <Header />
-        <creator.Provider value={{asstCreator, setAsstCreator}}>
-            <Outlet />
-        </creator.Provider>
+        <Provider store={appStore}>
+            <Header />
+            <creator.Provider value={{asstCreator, setAsstCreator}}>
+                <Outlet />
+            </creator.Provider>
+        </Provider>
     </div>
 };
 const AppRoutes = createBrowserRouter([
@@ -59,6 +63,10 @@ const AppRoutes = createBrowserRouter([
             {
                 path : "/restaurants/:resId",
                 element : <RestaurantInfo/>
+            },
+            {
+                path : "/cart",
+                element : <Cart/>
             }
         ]
     }
