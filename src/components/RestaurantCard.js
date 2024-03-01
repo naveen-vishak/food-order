@@ -27,7 +27,7 @@ const PromotedRestaurantCard = (props) => {
         <div>
             {promoted ? 
             <div>
-                <label className="absolute bg-black text-white rounded-lg p-1 m-1">Prompted</label>
+                <label className="absolute bg-black text-white rounded-lg px-2 py-1 m-1">Prompted</label>
                 <RestaurantCard data={data}></RestaurantCard>
             </div>
             : <RestaurantCard data={data}></RestaurantCard> }

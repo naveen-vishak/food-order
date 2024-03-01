@@ -22,8 +22,11 @@ const ItemsList = ({ items }) => {
                             {item.card.info.description}
                         </p>
                     </div>
-                    <div className="w-3/12 px-4 py-1">
-                        <img src = {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" + item.card.info.imageId}/>
+                    <div className="relative ">
+                        <div className="absolute right-0 bottom-0">
+                            <button className="bg-black text-white rounded-lg px-2 py-1">Add+</button>
+                        </div>
+                        <img className="w-[130] h-[130]" src = {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" + item.card.info.imageId}/>
                     </div>
                 </div>
             })}
