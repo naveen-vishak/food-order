@@ -9,24 +9,25 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState(null);
     const [filteredRestaurants, setFilteredRestaurants] = useState(null);
     const [searchText, setSearchText] = useState("");
+    const onlineStatus = useOnlineStatus();
+
     const fetchData = async () => {
         // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.0168445&lng=76.9558321&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING/");
         // const json = await data.json();
         const json = restaurantsData;
         return json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     }
+
     useEffect(() => {
         fetchData().then(data => {
-            // setTimeout(() => {
-                setListOfRestaurants(data);
-                setFilteredRestaurants(data);
-            // }, 3000);
+            setListOfRestaurants(data);
+            setFilteredRestaurants(data);
         })
     }, []);
-    const onlineStatus = useOnlineStatus();
+
     if(!onlineStatus) return <h2>Looks like you're offline!</h2>
     return !listOfRestaurants ? <div className="app-body"><Shimmer/></div> : (<div className="app-body">
-                <div className="filter flex">
+                <div className="filter flex justify-center">
                     <div className="search m-4 p-4">
                         <input
                             type="text"
@@ -60,20 +61,22 @@ const Body = () => {
                         </button>
                     </div>
                 </div>
-                <div className="restaurant-container flex flex-wrap">
-                    {
-                        filteredRestaurants.length === 0
-                        ? <div className="text-center">
-                            <p className="px-4 font-bold text-lg">No restaurant available</p>
-                        </div>
-                        : filteredRestaurants.map(data => {
-                            return (
-                                <Link to={`/restaurants/${data?.info?.id}`} key = {data?.info?.id}> 
-                                    <PromotedRestaurantCard key = {data?.info?.id} data = {data} />
-                                </Link>
-                            )
-                        })
-                    }
+                <div className="flex justify-center">
+                    <div className="restaurant-container flex flex-wrap justify-between w-[1200px] px-5">
+                        {
+                            filteredRestaurants.length === 0
+                            ? <div className="text-center">
+                                <p className="px-4 font-bold text-lg">No restaurant available</p>
+                            </div>
+                            : filteredRestaurants.map(data => {
+                                return (
+                                    <Link to={`/restaurants/${data?.info?.id}`} key = {data?.info?.id}> 
+                                        <PromotedRestaurantCard key = {data?.info?.id} data = {data} />
+                                    </Link>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>)
 }

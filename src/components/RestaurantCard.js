@@ -14,7 +14,7 @@ const RestaurantCard = (props) => {
             src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/"+cloudinaryImageId}
         />
         <h3 className="font-bold py-4 text-lg">{name}</h3>
-        <h4>{cuisines.join(", ")}</h4>
+        <h4>{cuisines?.join(", ")}</h4>
         <h5>{avgRating} stars</h5>
         <h5>{deliveryTime} minutes</h5>
     </div>

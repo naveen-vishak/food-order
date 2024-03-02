@@ -21,4 +21,10 @@
 
 
 # Redux toolkit(Immer)
+- State management library
 - Buttom -> Dispatches an action -> Executes reducer function -> Changes data in Slice  ==> Selector(Provider)
+
+# Testing(Testing Library)
+- Unit testing
+- Integration testing
+- End to End Testing

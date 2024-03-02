@@ -29,7 +29,7 @@ const ItemsList = ({ items }) => {
                             {item.card.info.description}
                         </p>
                     </div>
-                    <div className="relative ">
+                    <div className="relative">
                         <div className="absolute right-0 bottom-0">
                             <button className="bg-black text-white rounded-lg px-2 py-1"
                             onClick={() => handleAddItem(item)}>
