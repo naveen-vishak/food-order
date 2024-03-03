@@ -1,11 +1,11 @@
-const RestaurantCard = (props) => {
+const RestaurantCard = ({ data }) => {
     const {
         name,
         cuisines,
         avgRating,
         cloudinaryImageId,
-    } = props?.data?.info;
-    const { deliveryTime } = props?.data.info.sla;
+    } = data?.info;
+    const { deliveryTime } = data?.info.sla;
 
     return <div className="restaurant-card pt-2 mx-2 px-2 pb-4 mb-4 w-[200px] rounded-lg bg-gray-100 hover:bg-gray-200">
         <img
