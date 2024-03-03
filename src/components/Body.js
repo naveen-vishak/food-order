@@ -15,7 +15,11 @@ const Body = () => {
         // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.0168445&lng=76.9558321&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING/");
         // const json = await data.json();
         const json = restaurantsData;
-        return json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        const restaurantGridListing = json?.data?.cards?.filter(c => 
+            c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget" && c?.card?.card?.id === "restaurant_grid_listing")[0]?.
+            card?.card?.gridElements?.infoWithStyle?.restaurants;
+        console.log(restaurantGridListing);
+        return restaurantGridListing;
     }
 
     useEffect(() => {
@@ -28,7 +32,7 @@ const Body = () => {
     if(!onlineStatus) return <h2>Looks like you're offline!</h2>
     return !listOfRestaurants ? <div className="app-body"><Shimmer/></div> : (<div className="app-body">
                 <div className="filter flex justify-center">
-                    <div className="search m-4 p-4">
+                    <div className="search p-4">
                         <input
                             type="text"
                             className="border border-solid border-l-amber-950"
@@ -62,19 +66,23 @@ const Body = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <div className="restaurant-container flex flex-wrap justify-between w-[1200px] px-5">
+                    <div className="restaurant-container flex flex-wrap w-[1120px] px-5">
                         {
                             filteredRestaurants.length === 0
                             ? <div className="text-center">
                                 <p className="px-4 font-bold text-lg">No restaurant available</p>
                             </div>
-                            : filteredRestaurants.map(data => {
-                                return (
-                                    <Link to={`/restaurants/${data?.info?.id}`} key = {data?.info?.id}> 
-                                        <PromotedRestaurantCard key = {data?.info?.id} data = {data} />
-                                    </Link>
-                                )
-                            })
+                            :<>
+                                <h1 className="font-bold p-2">Restaurants with online food delivery in Coimbatore</h1>
+                                <div className="flex flex-wrap">
+                                    {filteredRestaurants.map(data => {
+                                        return (
+                                            <Link to={`/restaurants/${data?.info?.id}`} key = {data?.info?.id}> 
+                                                <PromotedRestaurantCard key = {data?.info?.id} data = {data} />
+                                            </Link>)
+                                    })}
+                                </div>
+                            </>
                         }
                     </div>
                 </div>

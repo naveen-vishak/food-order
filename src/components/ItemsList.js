@@ -7,11 +7,11 @@ const ItemsList = ({ items }) => {
         dispatch(addItem(item));  
     }
     return (
-        <div>
+        <div className="bg-gray-100">
             {items.map(item => {
                 return <div
                     key={item.card.info.id}
-                    className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
+                    className="p-2 m-2 border-b-2 text-left flex justify-between"
                 >
                     <div className="w-9/12">
                         <div className="py-2">
@@ -36,7 +36,7 @@ const ItemsList = ({ items }) => {
                                 Add+
                             </button>
                         </div>
-                        <img className="w-[130] h-[130]" src = {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" + item.card.info.imageId}/>
+                        <img className="w-[130] h-[130] rounded-lg" src = {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/" + item.card.info.imageId}/>
                     </div>
                 </div>
             })}

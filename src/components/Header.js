@@ -8,7 +8,7 @@ export const Header = () => {
     // Subscribing to the store using Selector
     const cart = useSelector((store) => store.cart.items);
 
-    return <div className = "header shadow-lg items-center "> {/* Greater then sm(Small device) */}
+    return <div className = "header shadow-md items-center "> {/* Greater then sm(Small device) */}
                 <div className="flex justify-between items-center mx-[140px]">
                     <Link to={"/"}>
                         <img className="w-auto h-[80px]" src="https://static.vecteezy.com/system/resources/thumbnails/007/500/121/small_2x/food-delivery-icon-clip-art-logo-simple-illustration-free-vector.jpg" />
