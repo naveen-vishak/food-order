@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import PromotedRestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 
 const RestaurantGridListing = ({ restaurantGridListing }) => {
-    return <div className="flex justify-center p-4 m-2">
+    return !restaurantGridListing.length ? <Shimmer/>
+    : <div className="flex justify-center p-4 m-2">
         <div className="w-[1200px]">
             <h1 className="font-bold p-2 m-2">Restaurants with online food delivery</h1>
             <div className="flex justify-center">

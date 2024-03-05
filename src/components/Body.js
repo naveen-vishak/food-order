@@ -13,9 +13,9 @@ const Body = () => {
     const onlineStatus = useOnlineStatus();
 
     const fetchData = async () => {
-        // const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.0168445&lng=76.9558321&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING/");
-        // const json = await data.json();
-        const json = restaurantsData;
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.0168445&lng=76.9558321&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING/");
+        const json = await data.json();
+        // const json = restaurantsData;
         return json;
     }
 

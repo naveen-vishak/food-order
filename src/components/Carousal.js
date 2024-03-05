@@ -1,5 +1,8 @@
+import Shimmer from "./Shimmer";
+
 const Carousal = ({ whatsOnYourMind }) => {
-    return (<div className="flex justify-center">
+    return ( !whatsOnYourMind.length ? <Shimmer/>
+    : <div className="flex justify-center">
         <div className="w-[1200px]">
             <h1 className="font-bold p-2 m-2">What's on your mind?</h1>
             <div className="flex flex-wrap">
