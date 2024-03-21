@@ -11,6 +11,7 @@ import { createContext } from "react";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
+import Login from "./components/Login";
 
 const Groceries = lazy(() => import("./components/Groceries"));
 
@@ -28,9 +29,11 @@ const App = () => {
     return <div className="app">
         <Provider store={appStore}>
             <Header />
-            <creator.Provider value={{asstCreator, setAsstCreator}}>
-                <Outlet />
-            </creator.Provider>
+            <div className="pt-[100px] z-5">
+                <creator.Provider value={{asstCreator, setAsstCreator}}>
+                    <Outlet />
+                </creator.Provider>
+            </div>
         </Provider>
     </div>
 };
@@ -69,6 +72,11 @@ const AppRoutes = createBrowserRouter([
                 element : <Cart/>
             }
         ]
+    },
+    {
+        path : "/login",
+        element : <Login/>,
+        errorElement : <Error/>,
     }
 ])
 root.render(<RouterProvider router={AppRoutes} />);
