@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
@@ -26,6 +26,7 @@ const App = () => {
         name : "Bharath Raj",
         email : "react@namastedev.com"
     });
+
     return <div className="app">
         <Provider store={appStore}>
             <Header />
@@ -70,13 +71,12 @@ const AppRoutes = createBrowserRouter([
             {
                 path : "/cart",
                 element : <Cart/>
+            },
+            {
+                path : "/login",
+                element : <Login/>,
             }
         ]
-    },
-    {
-        path : "/login",
-        element : <Login/>,
-        errorElement : <Error/>,
     }
 ])
 root.render(<RouterProvider router={AppRoutes} />);

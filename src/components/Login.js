@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { validateEmail, validatePassword, validateUserName } from "../utils/validateForm";
 
 const Login = () => {
@@ -13,42 +13,12 @@ const Login = () => {
     const navigate = useNavigate();
 
     const validate = () => {
+        
         setEmailMessage(validateEmail(email?.current?.value));
         setUserNameMessage(validateUserName(userName?.current?.value));
         setPasswordMessage(validatePassword(password?.current?.value));
 
-        if(emailMessage !== null && userNameMessage !== null && passwordMessage !== null) return;
-        else navigate("/");
-
-        // if(!signedIn) {
-        //     createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
-        //     .then((userCorangeential) => {
-        //         const user = userCredential.user;
-        //         navigate("/");
-        //         console.log(user);
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.log(errorCode);
-        //         console.log(errorMessage);
-        //         navigate("/");
-        //     });
-        // } else {
-        //     signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
-        //     .then((userCredential) => {
-        //         const user = userCredential.user;
-        //         navigate("/");
-        //         console.log(user);
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.log(errorCode);
-        //         console.log(errorMessage);
-        //         navigate("/");
-        //     });
-        // }    
+        if(emailMessage === null && userNameMessage === null && passwordMessage === null) navigate("/");
     }
 
     const handleSignIn = () => {
@@ -57,9 +27,6 @@ const Login = () => {
     
     return (
     <div className='bg-white w-[100%] h-[150%]'>
-        <Link to={"/"}>
-            <img className="w-[80px] h-[80px]" src="https://static.vecteezy.com/system/resources/thumbnails/007/500/121/small_2x/food-delivery-icon-clip-art-logo-simple-illustration-free-vector.jpg" />
-        </Link>
         <form onSubmit={e => e.preventDefault()} className='bg-white w-[35%] mx-auto right-0 left-0 text-black px-[100px] py-[60px] rounded-lg bg-opacity-60'>
             <h1 className="text-3xl mb-4 font-bold">
                 { signedIn ? "Sign in" : "Sign up" }
@@ -97,7 +64,7 @@ const Login = () => {
             </button>
             
             <p className="text-xs my-2 text-gray-400 cursor-pointer" onClick={handleSignIn}>
-                { signedIn ? "New to Netflix? Sign up now" : "Already have an account? Sign in" }
+                { signedIn ? "New to this place? Sign up now" : "Already have an account? Sign in" }
             </p>
         </form>
     </div>)
